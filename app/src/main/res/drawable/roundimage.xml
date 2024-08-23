@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Optional: Solid color for the background -->
+    <solid android:color="@android:color/white" />
+
+    <!-- Corner radius for rounding -->
+    <corners android:radius="16dp" />
+
+    <!-- Optional: Stroke for border -->
+    <!-- Uncomment if you want a border around the image -->
+    <!-- <stroke android:width="2dp" android:color="@android:color/black" /> -->
+</shape>

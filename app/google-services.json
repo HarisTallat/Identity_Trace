@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "397099999925",
+    "project_id": "identitytrace-b335f",
+    "storage_bucket": "identitytrace-b335f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397099999925:android:17ff61c5583d91897214fc",
+        "android_client_info": {
+          "package_name": "com.identity.trace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397099999925-qs4a5dkg4npif7csaod89fiacn9kqhq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCJWu7IVQbd6cLnX43WA58XXPkH9gqN0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397099999925-qs4a5dkg4npif7csaod89fiacn9kqhq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
