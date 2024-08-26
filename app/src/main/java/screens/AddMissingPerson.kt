@@ -2,13 +2,17 @@ package screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.identity.trace.R
 import java.util.*
 
@@ -21,22 +25,21 @@ class AddMissingPersonActivity : ComponentActivity() {
     private lateinit var editTextMissingDate: EditText
     private lateinit var buttonUploadImage: Button
     private lateinit var buttonSubmit: Button
+    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.missing_person_form)
+        initUI();
 
-        editTextName = findViewById(R.id.editTextName)
-        editTextAge = findViewById(R.id.editTextAge)
-        editTextLastKnownLocation = findViewById(R.id.editTextLastKnownLocation)
-        radioGroupGender = findViewById(R.id.radioGroupGender)
-        editTextMissingDate = findViewById(R.id.editTextMissingDate)
-        buttonUploadImage = findViewById(R.id.buttonUploadImage)
-        buttonSubmit = findViewById(R.id.buttonSubmit)
-
+        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                Toast.makeText(this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         buttonUploadImage.setOnClickListener {
-            Toast.makeText(this, "Upload Image button clicked", Toast.LENGTH_SHORT).show()
+            openGallery();
         }
 
         editTextMissingDate.setOnClickListener {
@@ -46,6 +49,22 @@ class AddMissingPersonActivity : ComponentActivity() {
         buttonSubmit.setOnClickListener {
             handleSubmit()
         }
+    }
+
+    private fun initUI() {
+        editTextName = findViewById(R.id.editTextName)
+        editTextAge = findViewById(R.id.editTextAge)
+        editTextLastKnownLocation = findViewById(R.id.editTextLastKnownLocation)
+        radioGroupGender = findViewById(R.id.radioGroupGender)
+        editTextMissingDate = findViewById(R.id.editTextMissingDate)
+        buttonUploadImage = findViewById(R.id.buttonUploadImage)
+        buttonSubmit = findViewById(R.id.buttonSubmit)
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        galleryLauncher.launch(intent)
     }
 
     private fun showDatePickerDialog() {
@@ -77,4 +96,6 @@ class AddMissingPersonActivity : ComponentActivity() {
         }
         Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
     }
+
+
 }
