@@ -26,7 +26,6 @@ class AddMissingPersonActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.missing_person_form)
 
-
         editTextName = findViewById(R.id.editTextName)
         editTextAge = findViewById(R.id.editTextAge)
         editTextLastKnownLocation = findViewById(R.id.editTextLastKnownLocation)
