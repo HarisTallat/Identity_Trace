@@ -186,6 +186,7 @@
             android:layout_marginTop="16dp"
             android:width="25dp"
             android:background="#FF9800"
+            android:onClick="onCl"
             android:text="Submit" />
 
     </LinearLayout>

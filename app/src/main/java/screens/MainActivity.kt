@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.log_in) // Replace with your layout
+        setContentView(R.layout.missing_person_form) // Replace with your layout
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
@@ -35,14 +35,13 @@ class MainActivity : ComponentActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
 
-        val signInButton: Button = findViewById(R.id.sigin_in) // Your Button ID
-        signInButton.setOnClickListener {
-            signInWithGoogle()
-        }
+
     }
 
     private fun signInWithGoogle() {
+
         val signInIntent = googleSignInClient.signInIntent
+        Log.e("MainActivity", "Google sign in failed")
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
