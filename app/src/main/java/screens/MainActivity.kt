@@ -3,6 +3,7 @@ package screens
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -11,7 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import android.widget.Button
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.identity.trace.R
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.missing_person_form) // Replace with your layout
+        setContentView(R.layout.search_missing_person_form) // Replace with your layout
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
@@ -34,6 +34,13 @@ class MainActivity : ComponentActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+
+//        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+//
+//        val signInButton: Button = findViewById(R.id.sigin_in) // Your Button ID
+//        signInButton.setOnClickListener {
+//            signInWithGoogle()
+//        }
 
 
     }
