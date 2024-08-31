@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.firebase.database.FirebaseDatabase
 import com.identity.trace.R
 import java.util.*
 
@@ -92,6 +93,32 @@ class AddMissingPersonActivity : ComponentActivity() {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return
         }
+
+        val database = FirebaseDatabase.getInstance().reference
+
+        // Create a unique ID for the new entry
+        val userId = database.push().key
+
+        val user = mapOf(
+            "name" to name,
+            "age" to age,
+            "lastKnownLocation" to lastKnownLocation,
+            "missingDate" to missingDate,
+            "gender" to gender
+        )
+        if (userId != null) {
+            database.child("users").child(userId).setValue(user)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    // Show failure message
+                    Toast.makeText(this, "Failed to submit details", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "Error generating user ID", Toast.LENGTH_SHORT).show()
+        }
+
         Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
     }
 
