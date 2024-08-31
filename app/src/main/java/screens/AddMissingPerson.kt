@@ -96,7 +96,6 @@ class AddMissingPersonActivity : ComponentActivity() {
 
         val database = FirebaseDatabase.getInstance().reference
 
-        // Create a unique ID for the new entry
         val userId = database.push().key
 
         val user = mapOf(
@@ -112,13 +111,11 @@ class AddMissingPersonActivity : ComponentActivity() {
                     Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
-                    // Show failure message
                     Toast.makeText(this, "Failed to submit details", Toast.LENGTH_SHORT).show()
                 }
         } else {
             Toast.makeText(this, "Error generating user ID", Toast.LENGTH_SHORT).show()
         }
-
         Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
     }
 
