@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.firebase.firestore.ktx)
     implementation ("com.google.android.material:material:1.9.0")
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
