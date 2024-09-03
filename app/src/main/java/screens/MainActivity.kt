@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.search_missing_person_form) // Replace with your layout
+        setContentView(R.layout.add_missing_person_form) // Replace with your layout
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
