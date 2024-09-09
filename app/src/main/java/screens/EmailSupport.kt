@@ -57,7 +57,7 @@ class EmailSupportActivity : ComponentActivity() {
             })
             val mimeMessage = MimeMessage(session)
             mimeMessage.addRecipient(Message.RecipientType.TO, InternetAddress((Config.RECEIVER_EMAIL)))
-            mimeMessage.subject = editTextSupportProject.toString();
+            mimeMessage.subject = editTextSupportProject.text.toString();
             mimeMessage.setText(message)
 
             val t = Thread {
