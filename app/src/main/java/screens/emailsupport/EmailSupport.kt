@@ -1,4 +1,4 @@
-package screens
+package screens.emailsupport
 
 import android.os.Bundle
 import android.widget.Button

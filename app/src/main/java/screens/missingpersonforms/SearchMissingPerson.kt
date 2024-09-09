@@ -1,4 +1,4 @@
-package screens
+package screens.missingpersonforms
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -11,12 +11,10 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.firebase.database.FirebaseDatabase
 import com.identity.trace.R
-import java.util.*
+import java.util.Calendar
 
-class AddMissingPersonActivity : ComponentActivity() {
-
+class SearchMissingPersonActivity: ComponentActivity() {
     private lateinit var editTextName: EditText
     private lateinit var editTextAge: EditText
     private lateinit var editTextLastKnownLocation: EditText
@@ -28,14 +26,15 @@ class AddMissingPersonActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.add_missing_person_form)
+        setContentView(R.layout.search_missing_person_form)
         initUI();
 
-        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                Toast.makeText(this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show()
+        galleryLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    Toast.makeText(this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
 
         buttonUploadImage.setOnClickListener {
             openGallery();
@@ -51,13 +50,13 @@ class AddMissingPersonActivity : ComponentActivity() {
     }
 
     private fun initUI() {
-        editTextName = findViewById(R.id.editTextName)
-        editTextAge = findViewById(R.id.editTextAge)
-        editTextLastKnownLocation = findViewById(R.id.editTextLastKnownLocation)
-        radioGroupGender = findViewById(R.id.radioGroupGender)
-        editTextMissingDate = findViewById(R.id.editTextMissingDate)
-        buttonUploadImage = findViewById(R.id.buttonUploadImage)
-        buttonSubmit = findViewById(R.id.buttonSubmit)
+        editTextName = findViewById(R.id.editTextSearchName)
+        editTextAge = findViewById(R.id.editTextAgeSearch)
+        editTextLastKnownLocation = findViewById(R.id.editTextLastKnownLocationSearch)
+        radioGroupGender = findViewById(R.id.radioGroupGenderSearch)
+        editTextMissingDate = findViewById(R.id.editTextMissingDateSearch)
+        buttonUploadImage = findViewById(R.id.buttonUploadImageSearch)
+        buttonSubmit = findViewById(R.id.buttonSubmitSearch)
     }
 
     private fun openGallery() {
@@ -93,31 +92,9 @@ class AddMissingPersonActivity : ComponentActivity() {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return
         }
-
-        val database = FirebaseDatabase.getInstance().reference
-
-        val userId = database.push().key
-
-        val user = mapOf(
-            "name" to name,
-            "age" to age,
-            "lastKnownLocation" to lastKnownLocation,
-            "missingDate" to missingDate,
-            "gender" to gender
-        )
-        if (userId != null) {
-            database.child("users").child(userId).setValue(user)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed to submit details", Toast.LENGTH_SHORT).show()
-                }
-        } else {
-            Toast.makeText(this, "Error generating user ID", Toast.LENGTH_SHORT).show()
-        }
         Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
-    }
 
+
+    }
 
 }
