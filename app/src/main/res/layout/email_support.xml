@@ -82,6 +82,29 @@
             android:textColorHint="#808080"
             android:textSize="16sp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Subject"
+            android:textColor="@color/white"
+            android:textSize="20dp"/>
+
+
+        <EditText
+            android:id="@+id/editTextSupportSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter your Subject"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#808080"
+            android:textSize="16sp"/>
+
         <!-- Description Input -->
         <TextView
             android:layout_width="wrap_content"
