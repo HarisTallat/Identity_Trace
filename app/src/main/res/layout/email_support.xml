@@ -1,0 +1,118 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@color/app_theme"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:layout_gravity="center"
+        android:background="@color/app_theme"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Support"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Input Fields -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/app_theme"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Name Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Your Name"
+            android:textColor="@color/white"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/editTextSupportName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#808080"
+            android:textSize="16sp"/>
+
+        <!-- Email Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/editTextSupportEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#808080"
+            android:textSize="16sp"/>
+
+        <!-- Description Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Description"
+            android:textColor="@color/white"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/editTextSupportDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter description"
+            android:inputType="textMultiLine"
+            android:minLines="5"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#808080"
+            android:textSize="16sp"/>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/buttonSupportSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#FF9800"
+            android:text="Submit"/>
+    </LinearLayout>
+</LinearLayout>
