@@ -24,7 +24,7 @@ class EmailSupportActivity : ComponentActivity() {
     private lateinit var editTextSupportName: EditText
     private lateinit var editTextSupportEmail: EditText
     private lateinit var editTextSupportDescription: EditText
-    private lateinit var editTextSupportProject: EditText
+    private lateinit var editTextSupportSubject: EditText
     private lateinit var buttonSupportSubmit: Button
 
 
@@ -44,7 +44,7 @@ class EmailSupportActivity : ComponentActivity() {
         editTextSupportEmail = findViewById(R.id.editTextSupportEmail)
         editTextSupportDescription = findViewById(R.id.editTextSupportDescription)
         buttonSupportSubmit = findViewById(R.id.buttonSupportSubmit)
-        editTextSupportProject = findViewById(R.id.editTextSupportSubject)
+        editTextSupportSubject = findViewById(R.id.editTextSupportSubject)
     }
 
     private fun sendEmail(message:String) {
@@ -57,7 +57,7 @@ class EmailSupportActivity : ComponentActivity() {
             })
             val mimeMessage = MimeMessage(session)
             mimeMessage.addRecipient(Message.RecipientType.TO, InternetAddress((Config.RECEIVER_EMAIL)))
-            mimeMessage.subject = editTextSupportProject.text.toString();
+            mimeMessage.subject = editTextSupportSubject.text.toString();
             mimeMessage.setText(message)
 
             val t = Thread {
