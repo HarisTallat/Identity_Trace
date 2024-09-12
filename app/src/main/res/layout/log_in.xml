@@ -10,16 +10,14 @@
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".35"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <Button
-        android:id="@+id/button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/back_to_main_page_from_sign_in"
+        android:layout_width="49dp"
+        android:layout_height="52dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/baseline_arrow_back_ios_new_24"
@@ -32,16 +30,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-black"
         android:text="Welcome\nBack"
         android:textColor="@color/white"
-        android:textSize="36dp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/back_to_main_page_from_sign_in" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/search_gif"
         android:layout_width="139dp"
         android:layout_height="114dp"
         android:layout_marginEnd="31dp"
@@ -67,8 +66,8 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/editTextText"
-                android:layout_width="match_parent"
+                android:id="@+id/sign_in_email"
+                android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="32dp"
@@ -76,20 +75,18 @@
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="10dp"
-                android:ems="10"
                 android:hint="Email or Username"
                 android:inputType="text"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintBottom_toTopOf="@+id/sign_in_password"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.15" />
 
             <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="match_parent"
+                android:id="@+id/sign_in_password"
+                android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
@@ -97,13 +94,12 @@
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="10dp"
-                android:ems="10"
                 android:hint="Password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_email" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -115,11 +111,11 @@
                 android:textColor="@color/app_theme"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_password" />
 
             <Button
-                android:id="@+id/sigin_in"
-                android:layout_width="379dp"
+                android:id="@+id/ui_sign_in_btn"
+                android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
@@ -128,27 +124,22 @@
                 android:text="Sign in"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:circularflow_radiusInDP="26dp"
                 app:cornerRadius="100dp"
                 app:layout_constraintBottom_toTopOf="@+id/google_sign_in"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText2"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <ImageButton
                 android:id="@+id/google_sign_in"
-                android:layout_width="122dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="141dp"
+                android:layout_width="60dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="25dp"
-                android:layout_marginEnd="148dp"
+                android:background="@drawable/google_logo"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sigin_in"
-                app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@drawable/googleg_standard_color_18" />
+                app:layout_constraintTop_toBottomOf="@+id/ui_sign_in_btn" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -159,24 +150,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/google_sign_in"
-                app:layout_constraintVertical_bias="0.5">
+                app:layout_constraintTop_toBottomOf="@+id/google_sign_in">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/already_have_an_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:text="Don't have an account?" />
 
-                <TextView
-                    android:id="@+id/textView4"
+                <Button
+                    android:id="@+id/navigate_to_sign_up_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sign up"
-                    android:textColor="@color/app_theme"
-                    android:textStyle="bold" />
+                    android:background="@color/white"
+                    android:text="Sign Up"
+                    android:textColor="@color/app_theme" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

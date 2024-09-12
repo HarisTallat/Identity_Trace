@@ -13,13 +13,13 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31" >
         <activity
-            android:name="screens.MainActivity"
+            android:name="screens.AddMissingPersonActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication" >
 
         </activity>
-        <activity android:name="screens.AddMissingPersonActivity"
+        <activity android:name="screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +30,18 @@
         <activity android:name="screens.SearchMissingPersonActivity"
             android:exported="true">
 
+        </activity>
+        <activity
+            android:name="screens.SignIn"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="screens.SignUp"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="screens.Home"
+            android:exported="true">
         </activity>
     </application>
 

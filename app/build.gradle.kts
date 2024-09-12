@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.identity.trace"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -68,6 +68,10 @@ dependencies {
     implementation("io.coil-kt:coil:2.2.2")
     implementation("io.coil-kt:coil-gif:2.2.2")  // For GIF support
 
+        implementation ("com.github.bumptech.glide:glide:4.15.1")
+        annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
+
     // Other dependencies
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
@@ -76,6 +80,7 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation ("com.google.android.material:material:1.9.0")
     implementation(libs.firebase.database)
+    implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
