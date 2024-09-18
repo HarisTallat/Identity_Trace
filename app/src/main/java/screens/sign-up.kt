@@ -8,19 +8,15 @@ import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.bumptech.glide.Glide
-import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.identity.trace.R
-import java.io.FileInputStream
+
 
 class SignUp : ComponentActivity() {
 
@@ -65,10 +61,11 @@ class SignUp : ComponentActivity() {
         signed_up_gif = findViewById(R.id.signed_up_gif)
         navigateToSignInBtn = findViewById(R.id.navigate_to_sign_in_btn)
     }
-    private fun  initGifs(){
+    private fun initGifs() {
         Glide.with(this)
             .asGif()
             .load(R.drawable.signup_gif)
+            .override(150, 150)
             .into(signed_up_gif)
     }
 

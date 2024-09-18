@@ -55,9 +55,13 @@ class SignIn : ComponentActivity() {
         // Set onClickListeners
         setOnClickListenersForAllButtons()
     }
-private fun  initGifs(){
-        Glide.with(this).asGif().load(R.drawable.search).into(search_gif)
-}
+    private fun initGifs() {
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.search)
+            .override(150, 150)
+            .into(search_gif)
+    }
     private fun initUI() {
         googleSignInBtn = findViewById(R.id.google_sign_in)
         signUpBtn = findViewById(R.id.navigate_to_sign_up_btn)
@@ -186,24 +190,6 @@ private fun  initGifs(){
                 }
             }
     }
-
-//    private fun storeUserEmail(email: String) {
-    //storeUserEmail(it)
-//        val db = FirebaseFirestore.getInstance()
-//        val user = hashMapOf("email" to email)
-//
-//        Log.d("okokkkkkk", "Attempting to store email: $email")
-//
-//        db.collection("signed-up-users").add(user)
-//            .addOnSuccessListener {
-//                Log.d("okokkkkkk", "Email stored successfully: $email")
-//                Toast.makeText(this, "Email stored successfully", Toast.LENGTH_SHORT).show()
-//            }
-//            .addOnFailureListener { e ->
-//                Log.e("okokkkkkk", "Error storing email: ${e.message}", e)
-//                Toast.makeText(this, "Error storing email: ${e.message}", Toast.LENGTH_SHORT).show()
-//            }
-//    }
 
     companion object {
         private const val RC_SIGN_IN = 9001

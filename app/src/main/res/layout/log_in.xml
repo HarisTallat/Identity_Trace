@@ -16,10 +16,10 @@
 
     <Button
         android:id="@+id/back_to_main_page_from_sign_in"
-        android:layout_width="49dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/baseline_arrow_back_ios_new_24"
         android:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,35 +27,34 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="222dp"
+        android:layout_height="90dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="38dp"
         android:fontFamily="sans-serif-black"
-        android:text="Welcome\nBack"
+        android:text="Welcome\nBack!"
         android:textColor="@color/white"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_to_main_page_from_sign_in" />
 
     <ImageView
         android:id="@+id/search_gif"
-        android:layout_width="139dp"
-        android:layout_height="114dp"
-        android:layout_marginEnd="31dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/roundimage"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/search" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         style="@style/custom_card_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:cardCornerRadius="20dp"
+        android:background="@drawable/card_view_round"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,30 +66,25 @@
 
             <EditText
                 android:id="@+id/sign_in_email"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginTop="45dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="10dp"
                 android:hint="Email or Username"
                 android:inputType="text"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/sign_in_password"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.15" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/sign_in_password"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="10dp"
@@ -98,6 +92,7 @@
                 android:inputType="textPassword"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_in_email" />
 
@@ -115,40 +110,38 @@
 
             <Button
                 android:id="@+id/ui_sign_in_btn"
-                android:layout_width="0dp"
+                android:layout_width="370dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/app_theme"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/round_btn"
                 android:text="Sign in"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:cornerRadius="100dp"
-                app:layout_constraintBottom_toTopOf="@+id/google_sign_in"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <ImageButton
                 android:id="@+id/google_sign_in"
-                android:layout_width="60dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="25dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/google_logo"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ui_sign_in_btn" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/google_sign_in">
 
