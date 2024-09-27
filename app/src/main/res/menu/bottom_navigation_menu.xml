@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/btn_1"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_home2"
+        android:icon="@drawable/btn_1"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_home3"
+        android:icon="@drawable/btn_1"
+        android:title="Dashboard" />
+</menu>
