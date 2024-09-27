@@ -64,6 +64,9 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation("com.sun.mail:android-mail:1.6.6")
     implementation("com.sun.mail:android-activation:1.6.7")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+
 
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth-ktx:22.0.0")

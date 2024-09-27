@@ -5,6 +5,15 @@
         <item name="shapeAppearanceOverlay">@style/custom_card_view</item>
     </style>
 
+    <style name="CornerImageView10dp">
+        <item name="cornerFamily">
+            rounded
+        </item>
+        <item name="cornerSize">
+            10dp
+        </item>
+    </style>
+
 
     <style name="custom_card_view" parent="">
         <item name="cornerFamily" >rounded</item>

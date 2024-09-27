@@ -136,23 +136,26 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/rvMissingPersons1"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar"
+                    android:id="@+id/progressBar1"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
-                    app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/rvMissingPersons1"
+                    app:layout_constraintHorizontal_bias="0.515"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -188,7 +191,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/rvMissingPersons"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingStart="16dp"
@@ -203,8 +206,8 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
-                    app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+                    app:layout_constraintBottom_toBottomOf="@+id/rvMissingPersons"
+                    app:layout_constraintEnd_toEndOf="@+id/rvMissingPersons"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -214,11 +217,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
