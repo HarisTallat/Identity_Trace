@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.email_support) // Replace with your layout
+        setContentView(R.layout.dashboard) // Replace with your layout
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
