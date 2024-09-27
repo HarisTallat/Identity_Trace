@@ -58,7 +58,7 @@
                         android:layout_marginEnd="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/roundimage" />
+                        app:srcCompat="@drawable/mp_person_01" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
