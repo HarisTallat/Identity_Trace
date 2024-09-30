@@ -35,15 +35,17 @@ class DashboardActivity : ComponentActivity()  {
         )
 
         val items = listOf(
-            ItemsModel("Joe Deline", "Description 1", R.drawable.baseline_lock_24),
-            ItemsModel("Item 1", "Description 1", R.drawable.btn_2),
-            ItemsModel("Item 1", "Description 1", R.drawable.baseline_lock_24),
+            ItemsModel("Joe Deline", "Description 1", R.drawable.junaid),
+            ItemsModel("Item 1", "Description 1", R.drawable.junaid),
+            ItemsModel("Item 1", "Description 1", R.drawable.junaid),
+            ItemsModel("Item 1", "Description 1", R.drawable.junaid)
 
-        )
+
+            )
 
         val categories = listOf(
-            CategoryModel("asdasdsa", R.drawable.bread),
-            CategoryModel("asdasdsa", R.drawable.bread)
+            CategoryModel("Add Missing Person", R.drawable.add_mp),
+            CategoryModel("Search Missing Person", R.drawable.mp_search)
 
         )
 
