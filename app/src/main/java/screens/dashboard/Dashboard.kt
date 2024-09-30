@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.identity.trace.R
 import models.CategoryModel
 import models.MissingPersonModel
@@ -24,6 +25,7 @@ class DashboardActivity : ComponentActivity() {
     private lateinit var viewPagerBanner: ViewPager2
     private lateinit var sliderAdapter: SliderAdapter
     private lateinit var recyclerViewCategory: RecyclerView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,7 @@ class DashboardActivity : ComponentActivity() {
         rvMissingPerson = findViewById(R.id.rvMissingPersons)
         viewPagerBanner = findViewById(R.id.viewPagerBanner)
         recyclerViewCategory = findViewById(R.id.rvMissingPersonCategory)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
     }
 
     private fun setupAdapters() {
