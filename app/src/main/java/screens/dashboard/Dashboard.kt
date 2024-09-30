@@ -3,6 +3,7 @@ package screens.dashboard
 import adapters.CategoryAdapter
 import adapters.MissingPersonAdapter
 import adapters.SliderAdapter
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.identity.trace.R
 import models.CategoryModel
 import models.MissingPersonModel
+import screens.missingpersonforms.AddMissingPersonActivity
+import screens.missingpersonforms.SearchMissingPersonActivity
 
 class DashboardActivity : ComponentActivity() {
 
@@ -40,7 +43,9 @@ class DashboardActivity : ComponentActivity() {
     private fun setupAdapters() {
         sliderAdapter = SliderAdapter(getBannerList())
         missingPersonAdapter = MissingPersonAdapter(getMissingPersonItems())
-        categoryAdapter = CategoryAdapter(getCategories())
+        categoryAdapter = CategoryAdapter(getCategories()) { category ->
+            handleCategoryClick(category)
+        }
     }
 
     private fun setupRecyclerViews() {
@@ -69,5 +74,18 @@ class DashboardActivity : ComponentActivity() {
             CategoryModel("Add Missing Person", R.drawable.add_mp),
             CategoryModel("Search Missing Person", R.drawable.mp_search)
         )
+    }
+
+    private fun handleCategoryClick(category: CategoryModel) {
+        when (category.title) {
+            "Add Missing Person" -> {
+                val intent = Intent(this, AddMissingPersonActivity::class.java)
+                startActivity(intent)
+            }
+            "Search Missing Person" -> {
+                val intent = Intent(this, SearchMissingPersonActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

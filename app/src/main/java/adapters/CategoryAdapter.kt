@@ -12,12 +12,23 @@ import com.bumptech.glide.Glide
 import com.identity.trace.R
 import models.CategoryModel
 
-class CategoryAdapter(private val categories: List<CategoryModel>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(
+    private val categories: List<CategoryModel>,
+    private val onCategoryClick: (CategoryModel) -> Unit // Click listener
+) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.textView5)
         val categoryImageView: ImageView = itemView.findViewById(R.id.titleCat)
+
+        init {
+            itemView.setOnClickListener {
+                val category = categories[adapterPosition]
+                onCategoryClick(category)
+            }
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_category, parent, false)
