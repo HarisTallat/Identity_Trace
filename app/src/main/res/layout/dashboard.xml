@@ -26,7 +26,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="48dp"
                     android:layout_marginEnd="24dp">
@@ -52,13 +52,13 @@
 
                     <ImageView
                         android:id="@+id/imageView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="50dp"
+                        android:layout_height="36dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
+                        android:src="@drawable/mp_person_01"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:src="@drawable/mp_person_01" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
@@ -74,6 +74,7 @@
                     android:layout_height="160dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Categories"
+                    android:text="Locate Missing Person"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -153,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Best Seller"
+                    android:text="Recently Reported Persons"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -183,10 +184,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 >
-
         </LinearLayout>
     </ScrollView>
-
-
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
