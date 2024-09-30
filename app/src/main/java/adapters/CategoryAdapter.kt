@@ -1,4 +1,4 @@
-package adapter
+package adapters
 
 
 
@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.identity.trace.R
-import models.CategoryModel // Adjust the import based on your package structure
+import models.CategoryModel
 
 class CategoryAdapter(private val categories: List<CategoryModel>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 

@@ -69,7 +69,7 @@
                 android:layout_margin="16dp">
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager2"
+                    android:id="@+id/viewPagerBanner"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:paddingStart="16dp"
@@ -119,7 +119,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvMissingPersons1"
+                    android:id="@+id/rvMissingPersonCategory"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:paddingStart="16dp"

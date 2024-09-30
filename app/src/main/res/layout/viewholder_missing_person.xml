@@ -7,9 +7,9 @@
     android:layout_margin="8dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageView2"
-        android:layout_width="164dp"
-        android:layout_height="164dp"
+        android:id="@+id/ivMissingPerson"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/ivMissingPerson" />
 
     <TextView
         android:id="@+id/missingPersonLocationTV"

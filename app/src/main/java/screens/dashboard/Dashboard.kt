@@ -1,68 +1,73 @@
 package screens.dashboard
 
-import adapter.CategoryAdapter
-import adapter.ItemsAdapter
-import adapter.SliderAdapter
+import adapters.CategoryAdapter
+import adapters.MissingPersonAdapter
+import adapters.SliderAdapter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.identity.trace.R
 import models.CategoryModel
-import models.ItemsModel
+import models.MissingPersonModel
 
-class DashboardActivity : ComponentActivity()  {
+class DashboardActivity : ComponentActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var itemsAdapter: ItemsAdapter
+    private lateinit var rvMissingPerson: RecyclerView
+    private lateinit var missingPersonAdapter: MissingPersonAdapter
     private lateinit var categoryAdapter: CategoryAdapter
-    private lateinit var viewPager2: ViewPager2
+    private lateinit var viewPagerBanner: ViewPager2
     private lateinit var sliderAdapter: SliderAdapter
-
     private lateinit var recyclerViewCategory: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard)
 
-        val bannerList = listOf(
-            R.drawable.banner_mp,
-            R.drawable.banner2
+        initializeViews()
+        setupAdapters()
+        setupRecyclerViews()
+    }
+
+    private fun initializeViews() {
+        rvMissingPerson = findViewById(R.id.rvMissingPersons)
+        viewPagerBanner = findViewById(R.id.viewPagerBanner)
+        recyclerViewCategory = findViewById(R.id.rvMissingPersonCategory)
+    }
+
+    private fun setupAdapters() {
+        sliderAdapter = SliderAdapter(getBannerList())
+        missingPersonAdapter = MissingPersonAdapter(getMissingPersonItems())
+        categoryAdapter = CategoryAdapter(getCategories())
+    }
+
+    private fun setupRecyclerViews() {
+        recyclerViewCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvMissingPerson.layoutManager = GridLayoutManager(this, 2)
+        recyclerViewCategory.adapter = categoryAdapter
+        rvMissingPerson.adapter = missingPersonAdapter
+        viewPagerBanner.adapter = sliderAdapter
+    }
+
+    private fun getBannerList(): List<Int> {
+        return listOf(R.drawable.banner_mp, R.drawable.banner2)
+    }
+
+    private fun getMissingPersonItems(): List<MissingPersonModel> {
+        return listOf(
+            MissingPersonModel("Joe Deline", "Lahore", R.drawable.junaid),
+            MissingPersonModel("Item 1", "Description 1", R.drawable.junaid),
+            MissingPersonModel("Item 2", "Description 2", R.drawable.junaid),
+            MissingPersonModel("Item 3", "Description 3", R.drawable.junaid)
         )
+    }
 
-        val items = listOf(
-            ItemsModel("Joe Deline", "Description 1", R.drawable.junaid),
-            ItemsModel("Item 1", "Description 1", R.drawable.junaid),
-            ItemsModel("Item 1", "Description 1", R.drawable.junaid),
-            ItemsModel("Item 1", "Description 1", R.drawable.junaid)
-
-
-            )
-
-        val categories = listOf(
+    private fun getCategories(): List<CategoryModel> {
+        return listOf(
             CategoryModel("Add Missing Person", R.drawable.add_mp),
             CategoryModel("Search Missing Person", R.drawable.mp_search)
-
         )
-
-        recyclerView = findViewById(R.id.rvMissingPersons)
-
-
-        viewPager2 = findViewById(R.id.viewPager2)
-        recyclerViewCategory = findViewById(R.id.rvMissingPersons1);
-        recyclerViewCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-        itemsAdapter = ItemsAdapter(items)
-        categoryAdapter = CategoryAdapter(categories)
-        recyclerView.adapter = itemsAdapter
-        recyclerViewCategory.adapter = categoryAdapter
-
-        sliderAdapter = SliderAdapter(bannerList)
-        viewPager2.adapter = sliderAdapter
     }
 }

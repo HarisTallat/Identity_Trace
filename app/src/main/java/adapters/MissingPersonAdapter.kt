@@ -1,4 +1,4 @@
-package adapter
+package adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,24 +8,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.identity.trace.R
-import models.ItemsModel
+import models.MissingPersonModel
 
-class ItemsAdapter(private val items: List<ItemsModel>) : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
-
-    // ViewHolder class to hold item views
+class MissingPersonAdapter(private val items: List<MissingPersonModel>) : RecyclerView.Adapter<MissingPersonAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.missingPersonNameTV)
         val locationTextView: TextView = itemView.findViewById(R.id.missingPersonLocationTV)
-        val missingPersonimageView: ImageView = itemView.findViewById(R.id.imageView2)
+        val missingPersonimageView: ImageView = itemView.findViewById(R.id.ivMissingPerson)
     }
 
-    // Create new views (invoked by the layout manager)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_missing_person, parent, false)
         return ItemViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = items[position]
         holder.titleTextView.text = item.title
@@ -36,7 +34,6 @@ class ItemsAdapter(private val items: List<ItemsModel>) : RecyclerView.Adapter<I
 
     }
 
-    // Return the size of the dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
         return items.size
     }
