@@ -3,6 +3,7 @@ package screens.dashboard
 import adapter.ItemsAdapter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -27,7 +28,8 @@ class DashboardActivity : ComponentActivity()  {
         )
 
         recyclerView = findViewById(R.id.rvMissingPersons)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        recyclerView.layoutManager = GridLayoutManager(this, 2) // 2 columns
         itemsAdapter = ItemsAdapter(items)
         recyclerView.adapter = itemsAdapter
     }

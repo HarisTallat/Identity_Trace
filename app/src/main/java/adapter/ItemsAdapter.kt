@@ -16,7 +16,7 @@ class ItemsAdapter(private val items: List<ItemsModel>) : RecyclerView.Adapter<I
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.missingPersonNameTV)
         val locationTextView: TextView = itemView.findViewById(R.id.missingPersonLocationTV)
-        val missingPersonimageView: ImageView = itemView.findViewById(R.id.missingPersonimageView)
+        val missingPersonimageView: ImageView = itemView.findViewById(R.id.imageView2)
     }
 
     // Create new views (invoked by the layout manager)
@@ -31,7 +31,7 @@ class ItemsAdapter(private val items: List<ItemsModel>) : RecyclerView.Adapter<I
         holder.titleTextView.text = item.title
         holder.locationTextView.text = item.location
         Glide.with(holder.itemView.context)
-            .load(item.imageUrl)
+            .load(item.imageUrl).centerCrop()
             .into(holder.missingPersonimageView)
 
     }
