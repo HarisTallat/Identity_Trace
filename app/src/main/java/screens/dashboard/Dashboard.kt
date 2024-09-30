@@ -23,8 +23,6 @@ class DashboardActivity : ComponentActivity()  {
             ItemsModel("Item 1", "Description 1", R.drawable.baseline_lock_24),
             ItemsModel("Item 1", "Description 1", R.drawable.bell),
             ItemsModel("Item 1", "Description 1", R.drawable.baseline_lock_24),
-            ItemsModel("Item 1", "Description 1", R.drawable.),
-
 
         )
 
