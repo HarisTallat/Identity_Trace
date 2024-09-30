@@ -20,6 +20,7 @@ class DashboardActivity : ComponentActivity()  {
     private lateinit var itemsAdapter: ItemsAdapter
     private lateinit var viewPager2: ViewPager2
     private lateinit var sliderAdapter: SliderAdapter
+    private lateinit var recyclerViewCategory: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard)
@@ -38,10 +39,13 @@ class DashboardActivity : ComponentActivity()  {
 
         recyclerView = findViewById(R.id.rvMissingPersons)
         viewPager2 = findViewById(R.id.viewPager2)
+        recyclerViewCategory = findViewById(R.id.rvMissingPersons1);
+        recyclerViewCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerView.layoutManager = GridLayoutManager(this, 2) // 2 columns
         itemsAdapter = ItemsAdapter(items)
         recyclerView.adapter = itemsAdapter
+        recyclerViewCategory.adapter = itemsAdapter
 
         sliderAdapter = SliderAdapter(bannerList)
         viewPager2.adapter = sliderAdapter
