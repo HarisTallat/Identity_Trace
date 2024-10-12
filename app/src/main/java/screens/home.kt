@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
 import com.identity.trace.R
+import screens.missingpersonforms.AddMissingPersonActivity
+import screens.missingpersonforms.SearchMissingPersonActivity
 
 class Home : ComponentActivity() {
 
