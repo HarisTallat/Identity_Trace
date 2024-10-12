@@ -139,6 +139,7 @@ class SignUp : ComponentActivity() {
         val database = FirebaseDatabase.getInstance()
         val userRef = database.getReference("signed-up-users")
         val firestore = FirebaseFirestore.getInstance()
+
         val auth = FirebaseAuth.getInstance()
 
         // Sanitize email for database key
