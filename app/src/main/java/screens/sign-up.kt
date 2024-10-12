@@ -64,7 +64,7 @@ class SignUp : ComponentActivity() {
     private fun initGifs() {
         Glide.with(this)
             .asGif()
-            .load(R.drawable.signup_gif)
+            .load(R.drawable.search)
             .override(150, 150)
             .into(signed_up_gif)
     }

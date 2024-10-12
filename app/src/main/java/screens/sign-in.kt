@@ -144,13 +144,13 @@ class SignIn : ComponentActivity() {
     }
     private fun navigateToHomeScreen() {
         Toast.makeText(this, "Navigating to Home", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, Home::class.java)
+//        val intent = Intent(this, Home::class.java)
         startActivity(intent)
     }
 
     private fun navigateToMainScreen() {
         Toast.makeText(this, "Navigating to Main Screen", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MainActivity::class.java)
+//        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
