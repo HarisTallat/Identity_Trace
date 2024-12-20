@@ -5,6 +5,7 @@ import adapters.MissingPersonAdapter
 import adapters.SliderAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.identity.trace.R
 import models.CategoryModel
 import models.MissingPersonModel
+import screens.SignIn
 import screens.missingpersonforms.AddMissingPersonActivity
 import screens.missingpersonforms.SearchMissingPersonActivity
 
@@ -26,6 +28,7 @@ class DashboardActivity : ComponentActivity() {
     private lateinit var sliderAdapter: SliderAdapter
     private lateinit var recyclerViewCategory: RecyclerView
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var loginBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,7 @@ class DashboardActivity : ComponentActivity() {
         viewPagerBanner = findViewById(R.id.viewPagerBanner)
         recyclerViewCategory = findViewById(R.id.rvMissingPersonCategory)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
+
     }
 
     private fun setupAdapters() {
@@ -90,5 +94,16 @@ class DashboardActivity : ComponentActivity() {
                 startActivity(intent)
             }
         }
+    }
+    private fun setOnClickListenersForAllButtons() {
+        loginBtn.setOnClickListener {
+            navigateToSignInScreen()
+        }
+
+    }
+    private fun navigateToSignInScreen() {
+        // Navigate to SignInActivity
+        val intent = Intent(this, SignIn::class.java)
+        startActivity(intent)
     }
 }
