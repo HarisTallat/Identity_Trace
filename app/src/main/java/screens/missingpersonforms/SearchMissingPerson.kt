@@ -110,16 +110,31 @@ class SearchMissingPersonActivity: ComponentActivity() {
         val selectedGenderId = radioGroupGender.checkedRadioButtonId
         val gender = findViewById<RadioButton>(selectedGenderId)?.text?.toString()
 
-        if (name.isEmpty() || age.isEmpty() || lastKnownLocation.isEmpty() || missingDate.isEmpty() || gender == null) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+        // Validate name, age, last known location, and gender
+        if (name.isEmpty() || !name.matches(Regex("^[a-zA-Z\\s]+\$"))) {
+            Toast.makeText(this, "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show()
             return
         }
-        Toast.makeText(this, "Details submitted successfully", Toast.LENGTH_SHORT).show()
 
+        if (age.isEmpty() || !age.matches(Regex("^\\d+\$"))) {
+            Toast.makeText(this, "Age should be a valid number", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-        callSearchImageApi(this,selectedImageUri)
+        if (lastKnownLocation.isEmpty() || !lastKnownLocation.matches(Regex("^[a-zA-Z0-9\\s,]+\$"))) {
+            Toast.makeText(this, "Last Known Location should be a valid string", Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        if (gender == null) {
+            Toast.makeText(this, "Please select a gender", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Proceed with API call for image
+        callSearchImageApi(this, selectedImageUri)
     }
+
 
 }
 

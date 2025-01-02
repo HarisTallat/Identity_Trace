@@ -30,6 +30,8 @@ import screens.dashboard.DashboardActivity
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddMissingPersonActivity : ComponentActivity() {
@@ -109,11 +111,34 @@ class AddMissingPersonActivity : ComponentActivity() {
         val selectedGenderId = radioGroupGender.checkedRadioButtonId
         val gender = findViewById<RadioButton>(selectedGenderId)?.text?.toString()
 
-        if (name.isEmpty() || age.isEmpty() || lastKnownLocation.isEmpty() || missingDate.isEmpty() || gender == null || !::selectedImageUri.isInitialized) {
+        // Validate inputs
+        if (name.isEmpty() || !name.matches(Regex("^[a-zA-Z\\s]+\$"))) {
+            Toast.makeText(this, "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (age.isEmpty() || !age.matches(Regex("^\\d+\$"))) {
+            Toast.makeText(this, "Age should be a valid number", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (lastKnownLocation.isEmpty() || !lastKnownLocation.matches(Regex("^[a-zA-Z0-9\\s,]+\$"))) {
+            Toast.makeText(this, "Last Known Location should be a valid string", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (missingDate.isEmpty()) {
+            Toast.makeText(this, "Missing date should be a valid date", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+        if (gender == null || !::selectedImageUri.isInitialized) {
             Toast.makeText(this, "Please fill in all fields and select an image", Toast.LENGTH_SHORT).show()
             return
         }
 
+        // Proceed with Firebase operations
         val database = FirebaseDatabase.getInstance().reference
         val userId = database.push().key
 
@@ -128,7 +153,6 @@ class AddMissingPersonActivity : ComponentActivity() {
                     }
                     // Call the API with the image file and ID
                     callAddImageApi(selectedImageUri, userId)
-
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Image upload failed", Toast.LENGTH_SHORT).show()
@@ -137,6 +161,8 @@ class AddMissingPersonActivity : ComponentActivity() {
             Toast.makeText(this, "Error generating user ID", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
     private fun callAddImageApi(imageUri: Uri, imageId: String) {
         Log.d("API_CALL", "callAddImageApi invoked with imageUri: $imageUri and imageId: $imageId")
