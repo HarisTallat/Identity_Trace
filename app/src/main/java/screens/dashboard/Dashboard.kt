@@ -67,6 +67,7 @@ class DashboardActivity : ComponentActivity() {
         return listOf(R.drawable.banner_mp, R.drawable.banner2)
     }
 
+
     private fun getMissingPersonItems(): List<MissingPersonModel> {
         return listOf(
             MissingPersonModel("Joe Deline", "Lahore", R.drawable.junaid),
@@ -106,4 +107,7 @@ class DashboardActivity : ComponentActivity() {
         val intent = Intent(this, SignIn::class.java)
         startActivity(intent)
     }
+
+
+
 }
