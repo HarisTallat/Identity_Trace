@@ -30,9 +30,7 @@ class ConsentFormActivity : ComponentActivity() {
             } else {
                 val consentGranted = isPermissionGranted && isDataUsageAgreed && isAccuracyConfirmed
                 if (consentGranted) {
-                    // Handle successful consent
                     Toast.makeText(this, "Thank you! Consent submitted successfully.", Toast.LENGTH_SHORT).show()
-
 
                     val intent = Intent(this, AddMissingPersonActivity::class.java)  // Assuming AddPersonFormActivity is your next screen
                     startActivity(intent)
