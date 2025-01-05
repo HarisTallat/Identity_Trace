@@ -138,7 +138,6 @@ class AddMissingPersonActivity : ComponentActivity() {
             return
         }
 
-        // Proceed with Firebase operations
         val database = FirebaseDatabase.getInstance().reference
         val userId = database.push().key
 
@@ -152,7 +151,7 @@ class AddMissingPersonActivity : ComponentActivity() {
                         saveUserDetails(userId, name, age, lastKnownLocation, missingDate, gender, uri.toString())
                     }
                     // Call the API with the image file and ID
-                    callAddImageApi(selectedImageUri, userId)
+//                    callAddImageApi(selectedImageUri, userId)
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Image upload failed", Toast.LENGTH_SHORT).show()

@@ -188,7 +188,7 @@
             android:width="25dp"
             android:background="#FF9800"
             android:onClick="onCl"
-            android:text="Submit" />
+            android:text="Advance to consent form" />
 
     </LinearLayout>
 </LinearLayout>

@@ -43,6 +43,12 @@
             android:exported="true">
 
         </activity>
+
+        <activity android:name="screens.missingpersonforms.ConsentFormActivity"
+            android:exported="true">
+
+        </activity>
+
         <activity
             android:name="screens.SignIn"
             android:exported="true">
