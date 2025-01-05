@@ -33,7 +33,7 @@ class ConsentFormActivity : ComponentActivity() {
                     // Handle successful consent
                     Toast.makeText(this, "Thank you! Consent submitted successfully.", Toast.LENGTH_SHORT).show()
 
-                    // Proceed to the Add Person form
+
                     val intent = Intent(this, AddMissingPersonActivity::class.java)  // Assuming AddPersonFormActivity is your next screen
                     startActivity(intent)
                     finish()
