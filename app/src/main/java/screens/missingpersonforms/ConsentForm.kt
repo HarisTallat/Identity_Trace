@@ -32,7 +32,7 @@ class ConsentFormActivity : ComponentActivity() {
                 if (consentGranted) {
                     Toast.makeText(this, "Thank you! Consent submitted successfully.", Toast.LENGTH_SHORT).show()
 
-                    val intent = Intent(this, AddMissingPersonActivity::class.java)  
+                    val intent = Intent(this, AddMissingPersonActivity::class.java)
                     startActivity(intent)
                     finish()
 
