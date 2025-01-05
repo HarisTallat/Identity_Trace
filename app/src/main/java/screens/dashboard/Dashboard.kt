@@ -63,8 +63,8 @@ class DashboardActivity : ComponentActivity() {
                     true
                 }
                 R.id.nav_profile -> {
-                    // Navigate to Profile Screen (you can use fragments or new activities)
-                    // Example: Load ProfileFragment or Activity
+                    val intent = Intent(this, SignIn::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
