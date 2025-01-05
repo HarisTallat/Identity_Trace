@@ -16,6 +16,7 @@ import com.identity.trace.R
 import models.CategoryModel
 import models.MissingPersonModel
 import screens.SignIn
+import screens.emailsupport.EmailSupportActivity
 import screens.missingpersonforms.AddMissingPersonActivity
 import screens.missingpersonforms.ConsentFormActivity
 import screens.missingpersonforms.SearchMissingPersonActivity
@@ -38,6 +39,37 @@ class DashboardActivity : ComponentActivity() {
         initializeViews()
         setupAdapters()
         setupRecyclerViews()
+
+        // Handle intent that comes from EmailSupportActivity
+        val intent = intent
+        if (intent.hasExtra("SELECT_TAB")) {
+            val selectedTab = intent.getStringExtra("SELECT_TAB")
+            if (selectedTab == "HOME") {
+                bottomNavigationView.selectedItemId = R.id.nav_home
+            }
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Navigate to Home Screen (you can use fragments or new activities)
+                    // Example: Load HomeFragment or Activity
+                    true
+                }
+                R.id.nav_support -> {
+                    // Navigate to Support Screen
+                    val intent = Intent(this, EmailSupportActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_profile -> {
+                    // Navigate to Profile Screen (you can use fragments or new activities)
+                    // Example: Load ProfileFragment or Activity
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun initializeViews() {
@@ -45,7 +77,6 @@ class DashboardActivity : ComponentActivity() {
         viewPagerBanner = findViewById(R.id.viewPagerBanner)
         recyclerViewCategory = findViewById(R.id.rvMissingPersonCategory)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
-
     }
 
     private fun setupAdapters() {
@@ -67,7 +98,6 @@ class DashboardActivity : ComponentActivity() {
     private fun getBannerList(): List<Int> {
         return listOf(R.drawable.banner_mp, R.drawable.banner2)
     }
-
 
     private fun getMissingPersonItems(): List<MissingPersonModel> {
         return listOf(
@@ -97,18 +127,4 @@ class DashboardActivity : ComponentActivity() {
             }
         }
     }
-    private fun setOnClickListenersForAllButtons() {
-        loginBtn.setOnClickListener {
-            navigateToSignInScreen()
-        }
-
-    }
-    private fun navigateToSignInScreen() {
-        // Navigate to SignInActivity
-        val intent = Intent(this, SignIn::class.java)
-        startActivity(intent)
-    }
-
-
-
 }

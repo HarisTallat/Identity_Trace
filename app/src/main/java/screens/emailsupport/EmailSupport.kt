@@ -1,15 +1,14 @@
 package screens.emailsupport
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-
 import com.identity.trace.R
 import config.Config
-
+import screens.dashboard.DashboardActivity
 import javax.mail.Authenticator
 import javax.mail.Message
 import javax.mail.MessagingException
@@ -27,7 +26,6 @@ class EmailSupportActivity : ComponentActivity() {
     private lateinit var editTextSupportSubject: EditText
     private lateinit var buttonSupportSubmit: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.email_support)
@@ -35,7 +33,11 @@ class EmailSupportActivity : ComponentActivity() {
 
         buttonSupportSubmit.setOnClickListener {
             val message = editTextSupportDescription.text.toString()
-            sendEmail(message)
+            if (message.isNotEmpty()) {
+                sendEmail(message)
+            } else {
+                Toast.makeText(this, "Please fill in the support description.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -47,7 +49,7 @@ class EmailSupportActivity : ComponentActivity() {
         editTextSupportSubject = findViewById(R.id.editTextSupportSubject)
     }
 
-    private fun sendEmail(message:String) {
+    private fun sendEmail(message: String) {
         try {
             val properties = Config.MAIL_PROPERTIES
             val session = Session.getInstance(properties, object : Authenticator() {
@@ -55,17 +57,28 @@ class EmailSupportActivity : ComponentActivity() {
                     return PasswordAuthentication(Config.SENDER_EMAIL, Config.PASSWORD)
                 }
             })
+
             val mimeMessage = MimeMessage(session)
-            mimeMessage.addRecipient(Message.RecipientType.TO, InternetAddress((Config.RECEIVER_EMAIL)))
-            mimeMessage.subject = editTextSupportSubject.text.toString();
+            mimeMessage.addRecipient(Message.RecipientType.TO, InternetAddress(Config.RECEIVER_EMAIL))
+            mimeMessage.subject = editTextSupportSubject.text.toString()
             mimeMessage.setText(message)
 
             val t = Thread {
                 try {
                     Transport.send(mimeMessage)
-                } catch (e: MessagingException) {
+                    runOnUiThread {
+                        Toast.makeText(this, "Email Sent Successfully", Toast.LENGTH_SHORT).show()
 
-                    Toast.makeText(this, "Failed to Send your Message To Support", Toast.LENGTH_SHORT).show()
+                        // Navigate back to DashboardActivity (Home) and select the Home tab
+                        val intent = Intent(this, DashboardActivity::class.java)
+                        intent.putExtra("SELECT_TAB", "HOME")
+                        startActivity(intent)
+                        finish() // Close this activity
+                    }
+                } catch (e: MessagingException) {
+                    runOnUiThread {
+                        Toast.makeText(this, "Failed to Send your Message To Support", Toast.LENGTH_SHORT).show()
+                    }
                     e.printStackTrace()
                 }
             }
@@ -75,6 +88,5 @@ class EmailSupportActivity : ComponentActivity() {
         } catch (e: MessagingException) {
             Toast.makeText(this, "Failed to Send your Message To Support", Toast.LENGTH_SHORT).show()
         }
-        Toast.makeText(this, "Email Sent Successfully", Toast.LENGTH_SHORT).show()
     }
 }
