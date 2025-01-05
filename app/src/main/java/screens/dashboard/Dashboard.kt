@@ -17,6 +17,7 @@ import models.CategoryModel
 import models.MissingPersonModel
 import screens.SignIn
 import screens.missingpersonforms.AddMissingPersonActivity
+import screens.missingpersonforms.ConsentFormActivity
 import screens.missingpersonforms.SearchMissingPersonActivity
 
 class DashboardActivity : ComponentActivity() {
@@ -87,7 +88,7 @@ class DashboardActivity : ComponentActivity() {
     private fun handleCategoryClick(category: CategoryModel) {
         when (category.title) {
             "Add Missing Person" -> {
-                val intent = Intent(this, AddMissingPersonActivity::class.java)
+                val intent = Intent(this, ConsentFormActivity::class.java)
                 startActivity(intent)
             }
             "Search Missing Person" -> {

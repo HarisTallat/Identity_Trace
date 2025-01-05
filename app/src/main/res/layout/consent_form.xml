@@ -1,13 +1,13 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/app_theme">
+    android:background="@color/app_theme"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -15,21 +15,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="Consent Form"
             android:textColor="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="bold" />
 
         <!-- Question 1 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Do you have the permission of the missing person's to share this data?"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:textSize="18sp" />
 
         <RadioGroup
             android:id="@+id/radioGroupPermission"
@@ -56,11 +56,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Do you agree to have this information processed and used for search purposes?"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
+            android:textSize="18sp" />
 
         <RadioGroup
             android:id="@+id/radioGroupDataUsage"
@@ -87,11 +87,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Do you confirm that all the details provided are accurate to the best of your knowledge?"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
+            android:textSize="18sp" />
 
         <RadioGroup
             android:id="@+id/radioGroupAccuracy"
@@ -118,20 +118,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="By submitting this form, you acknowledge that the data provided will be used solely for locating the missing person and will be handled according to applicable privacy laws."
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="14sp" />
 
         <!-- Submit Consent -->
         <Button
             android:id="@+id/buttonSubmitConsent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF9800"
-            android:text="Submit Consent"
             android:layout_marginTop="16dp"
-            android:onClick="onSubmitConsent" />
+            android:background="#FF9800"
+            android:onClick="onSubmitConsent"
+            android:text="Submit Consent" />
     </LinearLayout>
 </ScrollView>
