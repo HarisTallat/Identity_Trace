@@ -5,7 +5,7 @@ import java.util.Properties
 object Config {
     const val SENDER_EMAIL = "identitytrace97@gmail.com"
     const val PASSWORD = "vwot wrsq seuh kpfx"
-    const val RECEIVER_EMAIL = "talha.ansari.zahid@gmail.com"
+    const val RECEIVER_EMAIL = "identitytrace97@gmail.com"
     const val STRING_HOST = "smtp.gmail.com"
 
 

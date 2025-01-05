@@ -4,6 +4,8 @@ import adapters.CategoryAdapter
 import adapters.MissingPersonAdapter
 import adapters.SliderAdapter
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
@@ -39,6 +41,7 @@ class DashboardActivity : ComponentActivity() {
         initializeViews()
         setupAdapters()
         setupRecyclerViews()
+        bottomNavigationView.itemBackground = ColorDrawable(Color.TRANSPARENT)  // No background or ripple
 
         // Handle intent that comes from EmailSupportActivity
         val intent = intent
