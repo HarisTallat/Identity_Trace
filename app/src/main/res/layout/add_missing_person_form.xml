@@ -1,12 +1,9 @@
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@color/white"
     android:gravity="center"
-    android:background="@color/app_theme"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -14,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="200px"
         android:layout_gravity="center"
-        android:background="@color/app_theme"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="16dp">
@@ -22,19 +19,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Missing Person"
-            android:textColor="@color/white"
-            android:textSize="80px"
-            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-        />
+            android:text="Add Missing Person"
+            android:textColor="@color/black"
+            android:textSize="80px"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/app_theme"
+        android:background="@color/white"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -45,9 +42,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Name"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp" />
 
         <EditText
@@ -69,9 +66,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Age"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp" />
 
         <EditText
@@ -91,9 +88,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Last Known Location"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp" />
 
         <EditText
@@ -114,9 +111,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Gender"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp" />
 
         <RadioGroup
@@ -130,18 +127,22 @@
                 android:id="@+id/radioMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="Male" />
 
             <RadioButton
                 android:id="@+id/radioFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Female" />
+                android:fontFamily="sans-serif-medium"
+                android:text="Female"
+                android:textColor="@color/black" />
 
             <RadioButton
                 android:id="@+id/radioOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="Other" />
         </RadioGroup>
 
@@ -149,9 +150,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Missing SInce"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp" />
 
         <EditText
@@ -175,9 +176,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#FF9800"
+            android:background="@drawable/round_btn"
             android:padding="25px"
-            android:text="Upload Image" />
+            android:text="Upload Image"
+            android:textColor="@color/white" />
 
         <!-- Submit Button -->
         <Button
@@ -186,9 +188,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:width="25dp"
-            android:background="#FF9800"
+            android:background="@drawable/round_btn"
             android:onClick="onCl"
-            android:text="Advance to consent form" />
+            android:text="Advance to consent form"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 </LinearLayout>

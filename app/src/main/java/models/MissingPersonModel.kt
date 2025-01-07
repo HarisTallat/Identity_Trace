@@ -3,8 +3,8 @@ package models
 import java.io.Serializable
 
 data class MissingPersonModel(
-    val title: String,
+    val name: String,
     val location: String,
-    val imageUrl: Int
+    val imageUrl: String
 
 ) : Serializable

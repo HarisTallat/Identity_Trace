@@ -4,22 +4,21 @@ import adapters.CategoryAdapter
 import adapters.MissingPersonAdapter
 import adapters.SliderAdapter
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.FirebaseDatabase
 import com.identity.trace.R
 import models.CategoryModel
 import models.MissingPersonModel
 import screens.SignIn
 import screens.emailsupport.EmailSupportActivity
-import screens.missingpersonforms.AddMissingPersonActivity
 import screens.missingpersonforms.ConsentFormActivity
 import screens.missingpersonforms.SearchMissingPersonActivity
 
@@ -41,7 +40,8 @@ class DashboardActivity : ComponentActivity() {
         initializeViews()
         setupAdapters()
         setupRecyclerViews()
-        bottomNavigationView.itemBackground = ColorDrawable(Color.TRANSPARENT)  // No background or ripple
+        bottomNavigationView.itemIconTintList = getColorStateList(R.color.white)
+        bottomNavigationView.itemTextColor = getColorStateList(R.color.white)
 
         // Handle intent that comes from EmailSupportActivity
         val intent = intent
@@ -84,11 +84,23 @@ class DashboardActivity : ComponentActivity() {
 
     private fun setupAdapters() {
         sliderAdapter = SliderAdapter(getBannerList())
-        missingPersonAdapter = MissingPersonAdapter(getMissingPersonItems())
+
+        // Initialize MissingPersonAdapter with an empty list
+        missingPersonAdapter = MissingPersonAdapter(emptyList())
+
+        // Set the adapter to RecyclerView
+        rvMissingPerson.adapter = missingPersonAdapter
+
+        // Fetch data asynchronously and update the adapter
+        getMissingPersonItems { missingPersons ->
+            missingPersonAdapter.updateData(missingPersons) // Update adapter with loaded data
+        }
+
         categoryAdapter = CategoryAdapter(getCategories()) { category ->
             handleCategoryClick(category)
         }
     }
+
 
     private fun setupRecyclerViews() {
         recyclerViewCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -99,17 +111,32 @@ class DashboardActivity : ComponentActivity() {
     }
 
     private fun getBannerList(): List<Int> {
-        return listOf(R.drawable.banner_mp, R.drawable.banner2)
+        return listOf(R.drawable.missing_person_banner, R.drawable.banner2)
     }
 
-    private fun getMissingPersonItems(): List<MissingPersonModel> {
-        return listOf(
-            MissingPersonModel("Joe Deline", "Lahore", R.drawable.junaid),
-            MissingPersonModel("Item 1", "Description 1", R.drawable.junaid),
-            MissingPersonModel("Item 2", "Description 2", R.drawable.junaid),
-            MissingPersonModel("Item 3", "Description 3", R.drawable.junaid)
-        )
+    private fun getMissingPersonItems(onDataLoaded: (List<MissingPersonModel>) -> Unit) {
+        val database = FirebaseDatabase.getInstance().reference
+        val missingPersonsRef = database.child("users")
+
+        missingPersonsRef.get().addOnSuccessListener { snapshot ->
+            val missingPersons = mutableListOf<MissingPersonModel>()
+            for (childSnapshot in snapshot.children) {
+                val name = childSnapshot.child("name").value.toString()
+                val lastKnownLocation = childSnapshot.child("lastKnownLocation").value.toString()
+                val imageUrl = childSnapshot.child("imageUrl").value.toString()
+
+                missingPersons.add(MissingPersonModel(name, lastKnownLocation, imageUrl))
+            }
+            // Call the callback with the loaded data
+            onDataLoaded(missingPersons)
+        }.addOnFailureListener {
+            // Use proper context for the Toast
+            Toast.makeText(this, "Failed to load data: ${it.message}", Toast.LENGTH_SHORT).show()
+        }
     }
+
+
+
 
     private fun getCategories(): List<CategoryModel> {
         return listOf(
