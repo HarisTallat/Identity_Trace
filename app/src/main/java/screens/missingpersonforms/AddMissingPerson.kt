@@ -80,6 +80,7 @@ class AddMissingPersonActivity : ComponentActivity() {
         editTextMissingDate = findViewById(R.id.editTextMissingDate)
         buttonUploadImage = findViewById(R.id.buttonUploadImage)
         buttonSubmit = findViewById(R.id.buttonSubmit)
+
     }
 
     private fun openGallery() {

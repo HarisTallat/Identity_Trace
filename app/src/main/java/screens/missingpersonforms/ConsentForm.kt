@@ -8,17 +8,27 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.identity.trace.R
+import screens.dashboard.DashboardActivity
 
 class ConsentFormActivity : ComponentActivity() {
+    private lateinit var consentFormBack: Button;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.consent_form)
 
+
+
         val radioGroupPermission: RadioGroup = findViewById(R.id.radioGroupPermission)
         val radioGroupDataUsage: RadioGroup = findViewById(R.id.radioGroupDataUsage)
         val radioGroupAccuracy: RadioGroup = findViewById(R.id.radioGroupAccuracy)
         val buttonSubmitConsent: Button = findViewById(R.id.buttonSubmitConsent)
+        val consentFormBack: Button = findViewById(R.id.back_to_main_page_from_consent)
+        consentFormBack.setOnClickListener {
+            navigateToHomeScreen()
+
+        }
+
 
         buttonSubmitConsent.setOnClickListener {
             val isPermissionGranted = getSelectedOption(radioGroupPermission)
@@ -42,6 +52,14 @@ class ConsentFormActivity : ComponentActivity() {
             }
         }
     }
+
+
+
+    private fun navigateToHomeScreen() {
+        val intent = Intent(this, DashboardActivity::class.java)
+        startActivity(intent)
+    }
+
 
     private fun getSelectedOption(radioGroup: RadioGroup): Boolean? {
         val selectedRadioButtonId = radioGroup.checkedRadioButtonId
