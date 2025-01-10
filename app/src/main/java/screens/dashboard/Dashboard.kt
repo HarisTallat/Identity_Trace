@@ -6,6 +6,7 @@ import adapters.SliderAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.identity.trace.R
 import models.CategoryModel
@@ -32,6 +34,8 @@ class DashboardActivity : ComponentActivity() {
     private lateinit var recyclerViewCategory: RecyclerView
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var loginBtn: Button
+    private lateinit var textViewUserName: TextView
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,9 @@ class DashboardActivity : ComponentActivity() {
         initializeViews()
         setupAdapters()
         setupRecyclerViews()
+
+        auth = FirebaseAuth.getInstance()
+        displayUserName()
         bottomNavigationView.itemIconTintList = getColorStateList(R.color.white)
         bottomNavigationView.itemTextColor = getColorStateList(R.color.white)
 
@@ -80,6 +87,8 @@ class DashboardActivity : ComponentActivity() {
         viewPagerBanner = findViewById(R.id.viewPagerBanner)
         recyclerViewCategory = findViewById(R.id.rvMissingPersonCategory)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
+        textViewUserName = findViewById(R.id.textviewUsername)
+
     }
 
     private fun setupAdapters() {
@@ -132,6 +141,21 @@ class DashboardActivity : ComponentActivity() {
         }.addOnFailureListener {
             // Use proper context for the Toast
             Toast.makeText(this, "Failed to load data: ${it.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun displayUserName() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            // Get the display name or email
+            val displayName = currentUser.displayName
+            val email = currentUser.email
+
+            // Prefer display name if available, otherwise fall back to email
+            textViewUserName.text = displayName ?: email ?: "Anonymous User"
+        } else {
+            // No user is signed in
+            textViewUserName.text = "Guest"
         }
     }
 

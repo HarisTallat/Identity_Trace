@@ -25,11 +25,15 @@ class EmailSupportActivity : ComponentActivity() {
     private lateinit var editTextSupportDescription: EditText
     private lateinit var editTextSupportSubject: EditText
     private lateinit var buttonSupportSubmit: Button
-
+    private lateinit var emailSupportBackButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.email_support)
         initUI()
+
+        emailSupportBackButton.setOnClickListener {
+            navigateToHomeScreen()
+        }
 
         buttonSupportSubmit.setOnClickListener {
             val message = editTextSupportDescription.text.toString()
@@ -41,12 +45,20 @@ class EmailSupportActivity : ComponentActivity() {
         }
     }
 
+
+
+    private fun navigateToHomeScreen() {
+        val intent = Intent(this, DashboardActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun initUI() {
         editTextSupportName = findViewById(R.id.editTextSupportName)
         editTextSupportEmail = findViewById(R.id.editTextSupportEmail)
         editTextSupportDescription = findViewById(R.id.editTextSupportDescription)
         buttonSupportSubmit = findViewById(R.id.buttonSupportSubmit)
         editTextSupportSubject = findViewById(R.id.editTextSupportSubject)
+        emailSupportBackButton = findViewById(R.id.back_to_main_page_from_email_support)
     }
 
     private fun sendEmail(message: String) {

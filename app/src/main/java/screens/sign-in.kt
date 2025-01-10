@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.identity.trace.R
+import screens.dashboard.DashboardActivity
 
 class SignIn : ComponentActivity() {
 
@@ -138,18 +139,15 @@ class SignIn : ComponentActivity() {
     }
 
     private fun navigateToSignUpScreen() {
-        Toast.makeText(this, "Navigating to Sign Up", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, SignUp::class.java)
         startActivity(intent)
     }
     private fun navigateToHomeScreen() {
-        Toast.makeText(this, "Navigating to Home", Toast.LENGTH_SHORT).show()
-//        val intent = Intent(this, Home::class.java)
+        val intent = Intent(this, DashboardActivity::class.java)
         startActivity(intent)
     }
 
     private fun navigateToMainScreen() {
-        Toast.makeText(this, "Navigating to Main Screen", Toast.LENGTH_SHORT).show()
 //        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
