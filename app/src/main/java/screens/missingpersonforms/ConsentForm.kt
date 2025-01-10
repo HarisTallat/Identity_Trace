@@ -17,8 +17,6 @@ class ConsentFormActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.consent_form)
 
-
-
         val radioGroupPermission: RadioGroup = findViewById(R.id.radioGroupPermission)
         val radioGroupDataUsage: RadioGroup = findViewById(R.id.radioGroupDataUsage)
         val radioGroupAccuracy: RadioGroup = findViewById(R.id.radioGroupAccuracy)
@@ -26,9 +24,7 @@ class ConsentFormActivity : ComponentActivity() {
         val consentFormBack: Button = findViewById(R.id.back_to_main_page_from_consent)
         consentFormBack.setOnClickListener {
             navigateToHomeScreen()
-
         }
-
 
         buttonSubmitConsent.setOnClickListener {
             val isPermissionGranted = getSelectedOption(radioGroupPermission)
