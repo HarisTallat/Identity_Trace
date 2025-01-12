@@ -1,9 +1,13 @@
 package screens.missingpersonforms
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -27,6 +31,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okio.BufferedSink
 import screens.dashboard.DashboardActivity
+import screens.record_status.MissingPersonRecordStatus
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -148,11 +153,23 @@ class AddMissingPersonActivity : ComponentActivity() {
 
             imageReference.putFile(selectedImageUri)
                 .addOnSuccessListener {
-                    imageReference.downloadUrl.addOnSuccessListener { uri ->
-                        saveUserDetails(userId, name, age, lastKnownLocation, missingDate, gender, uri.toString())
+                    callSearchImageApi(this, selectedImageUri) { isFound ->
+                        if (isFound) {
+                            Toast.makeText(
+                                this, "This image already exists in your system", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, DashboardActivity::class.java)
+                            startActivity(intent)
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                finish() // This will go back to the previous activity after 3 seconds
+                            }, 3000)
+                        } else {
+                            imageReference.downloadUrl.addOnSuccessListener { uri ->
+                                saveUserDetails(userId, name, age, lastKnownLocation, missingDate, gender, uri.toString())
+                            }
+                            callAddImageApi(selectedImageUri, userId)
+                        }
                     }
-                    // Call the API with the image file and ID
-//                    callAddImageApi(selectedImageUri, userId)
+
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Image upload failed", Toast.LENGTH_SHORT).show()
@@ -243,6 +260,77 @@ class AddMissingPersonActivity : ComponentActivity() {
                 "Failed to resolve image URI",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+    }
+
+    private fun callSearchImageApi(context: Context, imageUri: Uri, callback: (Boolean) -> Unit) {
+        Log.d("API_CALL", "callSearchImageApi invoked with imageUri: $imageUri")
+
+        val contentResolver = context.contentResolver // Use the passed context
+        val inputStream: InputStream? = contentResolver.openInputStream(imageUri)
+        Log.d("API_CALL", "InputStream: $inputStream")
+
+        if (inputStream != null) {
+            try {
+                val requestBody = MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart(
+                        "image",
+                        "image.jpg", // Specify a filename
+                        inputStream.asRequestBody("image/*".toMediaTypeOrNull())
+                    ).build()
+                Log.d("API_CALL", "Request body created successfully")
+
+                val request = Request.Builder()
+                    .url("http://10.0.2.2:5000/check_image")
+                    .post(requestBody)
+                    .build()
+                Log.d("API_CALL", "Request built: $request")
+
+                val client = OkHttpClient()
+                Log.d("API_CALL", "OkHttpClient initialized")
+
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        Log.e("API_CALL", "API call failed", e)
+                        (context as Activity).runOnUiThread {
+                            Toast.makeText(
+                                context,
+                                "API call failed: ${e.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            callback(false) // Return false in case of failure
+                        }
+                    }
+
+                    override fun onResponse(call: Call, response: okhttp3.Response) {
+                        Log.d("API_CALL", "Response received: $response")
+                        (context as Activity).runOnUiThread {
+                            if (response.isSuccessful) {
+                                callback(true) // Return true if the image is found
+                            } else {
+                                callback(false) // Return false if the image is not found
+                            }
+                        }
+                    }
+                })
+            } catch (e: Exception) {
+                Log.e("API_CALL", "Exception while building request body or executing API call", e)
+                Toast.makeText(
+                    context,
+                    "An error occurred: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                callback(false) // Return false in case of an exception
+            }
+        } else {
+            Log.e("API_CALL", "Failed to resolve image URI")
+            Toast.makeText(
+                context,
+                "Failed to resolve image URI",
+                Toast.LENGTH_SHORT
+            ).show()
+            callback(false) // Return false if the URI cannot be resolved
         }
     }
 
