@@ -43,6 +43,7 @@ class SearchMissingPersonActivity: ComponentActivity() {
     private lateinit var buttonSubmit: Button
     private lateinit var selectedImageUri: Uri
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+    private lateinit var back_to_main_page_from_search: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +59,10 @@ class SearchMissingPersonActivity: ComponentActivity() {
                 }
             }
 
+        back_to_main_page_from_search.setOnClickListener {
+            navigateToHomeScreen()
+        }
+
         buttonUploadImage.setOnClickListener {
             openGallery();
         }
@@ -65,6 +70,8 @@ class SearchMissingPersonActivity: ComponentActivity() {
         editTextMissingDate.setOnClickListener {
             showDatePickerDialog()
         }
+
+
 
         buttonSubmit.setOnClickListener {
             handleSubmit()
@@ -79,6 +86,12 @@ class SearchMissingPersonActivity: ComponentActivity() {
         editTextMissingDate = findViewById(R.id.editTextMissingDateSearch)
         buttonUploadImage = findViewById(R.id.buttonUploadImageSearch)
         buttonSubmit = findViewById(R.id.buttonSubmitSearch)
+        back_to_main_page_from_search = findViewById(R.id.back_to_main_page_from_search)
+    }
+
+    private fun navigateToHomeScreen() {
+        val intent = Intent(this, DashboardActivity::class.java)
+        startActivity(intent)
     }
 
     private fun openGallery() {

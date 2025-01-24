@@ -44,6 +44,7 @@ class AddMissingPersonActivity : ComponentActivity() {
     private lateinit var buttonUploadImage: Button
     private lateinit var buttonSubmit: Button
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+    private lateinit var back_to_main_page_from_sign_in: Button
     private lateinit var selectedImageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +58,10 @@ class AddMissingPersonActivity : ComponentActivity() {
                 selectedImageUri = data?.data ?: return@registerForActivityResult
                 Toast.makeText(this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        back_to_main_page_from_sign_in.setOnClickListener {
+            navigateToHomeScreen()
         }
 
         buttonUploadImage.setOnClickListener {
@@ -80,6 +85,8 @@ class AddMissingPersonActivity : ComponentActivity() {
         editTextMissingDate = findViewById(R.id.editTextMissingDate)
         buttonUploadImage = findViewById(R.id.buttonUploadImage)
         buttonSubmit = findViewById(R.id.buttonSubmit)
+        back_to_main_page_from_sign_in = findViewById(R.id.back_to_main_page_from_add)
+
 
     }
 
@@ -87,6 +94,11 @@ class AddMissingPersonActivity : ComponentActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         galleryLauncher.launch(intent)
+    }
+
+    private fun navigateToHomeScreen() {
+        val intent = Intent(this, ConsentFormActivity::class.java)
+        startActivity(intent)
     }
 
     private fun showDatePickerDialog() {
