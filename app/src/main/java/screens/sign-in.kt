@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DataSnapshot
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.identity.trace.R
 import screens.dashboard.DashboardActivity
+import screens.emailsupport.EmailSupportActivity
 
 class SignIn : ComponentActivity() {
 
@@ -40,6 +42,7 @@ class SignIn : ComponentActivity() {
     private lateinit var enteredPassword: EditText
     private lateinit var back_to_main_page_from_sign_in: Button
     private lateinit var search_gif: ImageView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +55,37 @@ class SignIn : ComponentActivity() {
         // Buttons and input initialization
         initUI()
         initGifs()
+
+        bottomNavigationView.itemIconTintList = getColorStateList(R.color.white)
+        bottomNavigationView.itemTextColor = getColorStateList(R.color.white)
+
+        val intent = intent
+        if (intent.hasExtra("SELECT_TAB")) {
+            val selectedTab = intent.getStringExtra("SELECT_TAB")
+            if (selectedTab == "HOME") {
+                bottomNavigationView.selectedItemId = R.id.nav_home
+            }
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_support -> {
+                    // Navigate to Support Screen
+                    val intent = Intent(this, EmailSupportActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_profile -> {
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Set onClickListeners
         setOnClickListenersForAllButtons()
@@ -70,7 +104,9 @@ class SignIn : ComponentActivity() {
         enteredEmail = findViewById(R.id.sign_in_email)
         enteredPassword = findViewById(R.id.sign_in_password)
         search_gif = findViewById(R.id.search_gif)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
         back_to_main_page_from_sign_in = findViewById(R.id.back_to_main_page_from_sign_in)
+
     }
 
     private fun initGoogleSignInClient() {

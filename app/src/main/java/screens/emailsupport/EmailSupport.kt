@@ -6,8 +6,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.identity.trace.R
 import config.Config
+import screens.SignIn
 import screens.dashboard.DashboardActivity
 import javax.mail.Authenticator
 import javax.mail.Message
@@ -26,13 +28,49 @@ class EmailSupportActivity : ComponentActivity() {
     private lateinit var editTextSupportSubject: EditText
     private lateinit var buttonSupportSubmit: Button
     private lateinit var emailSupportBackButton: Button
+    private lateinit var bottomNavigationView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.email_support)
         initUI()
 
+        bottomNavigationView.itemIconTintList = getColorStateList(R.color.white)
+        bottomNavigationView.itemTextColor = getColorStateList(R.color.white)
+
         emailSupportBackButton.setOnClickListener {
             navigateToHomeScreen()
+        }
+
+        bottomNavigationView.itemIconTintList = getColorStateList(R.color.white)
+        bottomNavigationView.itemTextColor = getColorStateList(R.color.white)
+
+        // Handle intent that comes from EmailSupportActivity
+        val intent = intent
+        if (intent.hasExtra("SELECT_TAB")) {
+            val selectedTab = intent.getStringExtra("SELECT_TAB")
+            if (selectedTab == "HOME") {
+                bottomNavigationView.selectedItemId = R.id.nav_home
+            }
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_support -> {
+                    // Navigate to Support Screen
+                    true
+                }
+                R.id.nav_profile -> {
+                    val intent = Intent(this, SignIn::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
 
         buttonSupportSubmit.setOnClickListener {
@@ -58,6 +96,7 @@ class EmailSupportActivity : ComponentActivity() {
         editTextSupportDescription = findViewById(R.id.editTextSupportDescription)
         buttonSupportSubmit = findViewById(R.id.buttonSupportSubmit)
         editTextSupportSubject = findViewById(R.id.editTextSupportSubject)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
         emailSupportBackButton = findViewById(R.id.back_to_main_page_from_email_support)
     }
 
